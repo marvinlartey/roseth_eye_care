@@ -17,7 +17,7 @@ class StaffHomePage extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 44, 122, 211),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(18.0),
+        padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
           child: Column(children: [
             // User info bar
@@ -27,6 +27,7 @@ class StaffHomePage extends StatelessWidget {
 
             const Padding(padding: EdgeInsets.all(50)),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // New patient button
 
@@ -45,21 +46,26 @@ class StaffHomePage extends StatelessWidget {
                   icon: Icons.person_search_rounded,
                   text: 'Search with ID Number',
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => NewPatient()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const NewPatient()));
                   },
                 ),
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Search with name
                 MainButton(
                   icon: Icons.badge_outlined,
                   text: 'Search with name',
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => NewPatient()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const NewPatient()));
                   },
                 ),
 
@@ -68,8 +74,10 @@ class StaffHomePage extends StatelessWidget {
                   icon: Icons.edit_square,
                   text: 'Update Details',
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => PatientList()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const PatientList()));
                   },
                 ),
               ],
@@ -97,41 +105,37 @@ class MainButton extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(15.0),
       child: InkWell(
         onTap: onTap,
         child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-          child: Card(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Container(
-                color: const Color.fromARGB(255, 38, 123, 219),
-                width: screenWidth * 0.36,
-                height: screenHeight * 0.20,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Icon(
-                        icon,
-                        color: Colors.white,
-                        size: 60,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          text,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white),
-                        ),
-                      )
-                    ],
+          borderRadius: BorderRadius.circular(20),
+          child: Container(
+            color: const Color.fromARGB(255, 38, 123, 219),
+            width: screenWidth * 0.36,
+            height: screenHeight * 0.20,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    icon,
+                    color: Colors.white,
+                    size: 60,
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      text,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white),
+                    ),
+                  )
+                ],
               ),
             ),
           ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class PatientDetailsPage extends StatelessWidget {
   final Map<String, dynamic> patientData; // Patient data to display
 
-  PatientDetailsPage(this.patientData);
+  const PatientDetailsPage(this.patientData, {super.key});
 
   @override
   Widget build(BuildContext context) {

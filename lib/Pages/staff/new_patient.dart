@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:roseth_eye_care/Pages/staff/homepage_staff.dart';
-import 'package:roseth_eye_care/Pages/staff/parient_details.dart';
 
 import '../../main.dart';
+
+// TODO: CATCH WRONG DATA TYPES
 
 class NewPatient extends StatefulWidget {
   const NewPatient({super.key});
@@ -16,6 +17,8 @@ class _NewPatientState extends State<NewPatient> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+
   final TextEditingController _ageController = TextEditingController();
   final TextEditingController _idNumberController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
@@ -24,6 +27,7 @@ class _NewPatientState extends State<NewPatient> {
       TextEditingController();
 
   final _ageFocusNode = FocusNode();
+  final _addressFocusNode = FocusNode();
   final _genderFocusNode = FocusNode();
   final _idNumberFocusNode = FocusNode();
   final _phoneNumberFocusNode = FocusNode();
@@ -34,6 +38,7 @@ class _NewPatientState extends State<NewPatient> {
   void dispose() {
     _ageFocusNode.dispose();
     _genderFocusNode.dispose();
+    _addressFocusNode.dispose();
     _idNumberFocusNode.dispose();
     _phoneNumberFocusNode.dispose();
     _nextOfKinFocusNode.dispose();
@@ -47,12 +52,13 @@ class _NewPatientState extends State<NewPatient> {
     int age = int.parse(_ageController.text);
     String idNumber = _idNumberController.text;
     String phoneNumber = _phoneNumberController.text;
+    String address = _addressController.text;
     String nextOfKin = _nextOfKinController.text;
     String nextOfKinPhone = _nextOfKinPhoneController.text;
 
     // Send patient information to Firestore
-    addPatient(name, age, selectedGender, idNumber, phoneNumber, nextOfKin,
-        nextOfKinPhone);
+    addPatient(name, age, selectedGender, idNumber, phoneNumber, address,
+        nextOfKin, nextOfKinPhone);
 
     // Clear form fields
     _formKey.currentState!.reset();
@@ -91,9 +97,16 @@ class _NewPatientState extends State<NewPatient> {
                     _phoneNumberController),
                 const SizedBox(height: 16.0),
                 _buildTextField(
-                    'Next of Kin',
+                    'Address',
                     TextInputType.text,
                     _phoneNumberFocusNode,
+                    _addressFocusNode,
+                    _addressController),
+                const SizedBox(height: 16.0),
+                _buildTextField(
+                    'Next of Kin',
+                    TextInputType.text,
+                    _addressFocusNode,
                     _nextOfKinFocusNode,
                     _nextOfKinController),
                 const SizedBox(height: 16.0),
@@ -111,7 +124,7 @@ class _NewPatientState extends State<NewPatient> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => StaffHomePage()));
+                              builder: (context) => const StaffHomePage()));
                     }
                   },
                   style: ElevatedButton.styleFrom(

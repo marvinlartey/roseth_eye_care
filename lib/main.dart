@@ -25,8 +25,15 @@ class MyApp extends StatelessWidget {
   }
 }
 
-void addPatient(String name, int age, String? gender, String idNumber,
-    String phoneNumber, String nextOfKin, String nextOfKinPhone) {
+void addPatient(
+    String name,
+    int age,
+    String? gender,
+    String idNumber,
+    String phoneNumber,
+    String address,
+    String nextOfKin,
+    String nextOfKinPhone) {
   FirebaseFirestore.instance.collection('patients').add({
     'name': name,
     'age': age,
