@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "308015631052",
+    "project_id": "roseth-be6f9",
+    "storage_bucket": "roseth-be6f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308015631052:android:c34a408f908306ede01069",
+        "android_client_info": {
+          "package_name": "com.example.roseth_eye_care"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308015631052-ts5105m5e7jeiendu8k796i3pfud6emg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIet7nyAXkEFxgenDDjIgxKnoddc6cemM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308015631052-ts5105m5e7jeiendu8k796i3pfud6emg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
