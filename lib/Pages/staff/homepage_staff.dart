@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roseth_eye_care/Pages/staff/list_of_patients.dart';
 import 'package:roseth_eye_care/Pages/staff/new_patient.dart';
 
 class StaffHomePage extends StatelessWidget {
@@ -15,38 +16,66 @@ class StaffHomePage extends StatelessWidget {
         toolbarHeight: 50,
         backgroundColor: const Color.fromARGB(255, 44, 122, 211),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(18.0),
-        child: Column(children: [
-          Card(
-            child: Row(children: [Text("hellooo")]),
-          ),
-          Padding(padding: EdgeInsets.all(50)),
-          Row(
-            children: [
-              MainButton(
-                icon: Icons.person_add,
-                text: 'New Patient',
-              ),
-              MainButton(
-                icon: Icons.person_search_rounded,
-                text: 'Search with ID Number',
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              MainButton(
-                icon: Icons.badge_outlined,
-                text: 'Search with name',
-              ),
-              MainButton(
-                icon: Icons.edit_square,
-                text: 'Update Details',
-              ),
-            ],
-          ),
-        ]),
+      body: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: SingleChildScrollView(
+          child: Column(children: [
+            // User info bar
+            const Card(
+              child: Row(children: [Text("hellooo")]),
+            ),
+
+            const Padding(padding: EdgeInsets.all(50)),
+            Row(
+              children: [
+                // New patient button
+
+                MainButton(
+                  icon: Icons.person_add,
+                  text: 'New Patient',
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const NewPatient()));
+                  },
+                ),
+                // Search with ID
+                MainButton(
+                  icon: Icons.person_search_rounded,
+                  text: 'Search with ID Number',
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => NewPatient()));
+                  },
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                // Search with name
+                MainButton(
+                  icon: Icons.badge_outlined,
+                  text: 'Search with name',
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => NewPatient()));
+                  },
+                ),
+
+                // Update Details
+                MainButton(
+                  icon: Icons.edit_square,
+                  text: 'Update Details',
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => PatientList()));
+                  },
+                ),
+              ],
+            ),
+          ]),
+        ),
       ),
     );
   }
@@ -55,10 +84,12 @@ class StaffHomePage extends StatelessWidget {
 class MainButton extends StatelessWidget {
   final String text;
   final IconData icon;
+  final VoidCallback onTap;
   const MainButton({
     super.key,
     required this.text,
     required this.icon,
+    required this.onTap,
   });
 
   @override
@@ -68,10 +99,7 @@ class MainButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
-        onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const NewPatient()));
-        },
+        onTap: onTap,
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(20)),
           child: Card(
